@@ -1,6 +1,7 @@
 
 <script setup>
 import {ref, onMounted, computed } from 'vue'
+import PokemonDetalle from './PokemonDetalle.vue';
 
 
 
@@ -15,19 +16,27 @@ import {ref, onMounted, computed } from 'vue'
  
 <div class="card__face card__face--front" >
     <h1>{{pokemonInfo.name}}</h1>
+    <h2>Nº {{pokemonInfo.id}} </h2>
     <img :src="pokemonInfo.sprites?.front_default">
-    <p>Id: {{pokemonInfo.id}} </p>
+    <ul class="typecolor">
+      <li v-for="item in pokemonInfo.types" :key='item.type.name'>
+        <span >{{item.type.name}}</span>
+
+      </li>
+    </ul>
+    
     
 
 <button @click="$router.push({ name:'pokemon', params: {pokemonId: 'detalle'}} )">View more...</button>
 </div>
 
   <div class="card__face card__face--back">
-    <h1>Abilities de {{pokemonInfo.name}}</h1>
+    <h1>{{pokemonInfo.name}}</h1>
+    <h2>Abilities</h2>
     <img :src="pokemonInfo.sprites?.back_default">
-    <ul>
+    <ul class="ability">
       <li v-for="item in pokemonInfo.stats" :key='item.stat.name'>
-        <span>{{item.stat.name}}</span>:<span>{{item.base_stat}}</span>
+        <span>{{item.stat.name}}</span> // <span>{{item.base_stat}}</span>
 
       </li>
     </ul>
@@ -36,9 +45,11 @@ import {ref, onMounted, computed } from 'vue'
 </div>
 </div>
 </div>
+
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -88,15 +99,16 @@ export default {
   backface-visibility: hidden;
 }
 
-.card__face--front {
+/*.card__face--front {
   
-  background: radial-gradient(circle at center, rgb(250, 248, 248) 0, rgb(232, 166, 53), rgb(233, 73, 20) 100%);
   
-}
+  
+}*/
 
 .card__face--back {
-  background: rgba(17, 78, 72, 0.631);
+  background: rgba(30, 213, 195, 0.693);
   transform: rotateY(180deg);
+
 
  
 }
@@ -105,5 +117,29 @@ export default {
 }
 .card button {
   margin-top: auto;
+}
+
+.typecolor {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color:aliceblue;
+}
+
+.typecolor li {
+  display: inline-block;
+  width: 4em;
+  height: 2em;
+  background: rgb(89, 37, 37);
+  border: 2px snow;
+
+}
+
+.ability {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color:aliceblue;
+
 }
 </style>

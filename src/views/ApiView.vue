@@ -8,7 +8,6 @@ import { ref,computed,onMounted } from 'vue'
 const pokemonList= ref([])
 const search= ref('')
 
-
 const filteredPokemonList=computed(()=>{
   return pokemonList.value.filter(pokemon=>{
     return pokemon.name.includes(search.value)
@@ -17,7 +16,11 @@ const filteredPokemonList=computed(()=>{
 
 onMounted(async()=>{
 pokemonList.value=await pokeApi.getPokemons()
+
 })
+
+
+
 </script>
 
 <template>
@@ -28,6 +31,7 @@ pokemonList.value=await pokeApi.getPokemons()
 
     <div class="cards">
       <PokemonCard  v-for="(data,index) in filteredPokemonList" :key="index" :pokemon-info="data" /> 
+      
     </div>
   
   </div>
@@ -35,6 +39,10 @@ pokemonList.value=await pokeApi.getPokemons()
   
 </template>
 
+<script>
+
+
+</script>
 
 
 
@@ -44,12 +52,7 @@ pokemonList.value=await pokeApi.getPokemons()
  row-gap: 1rem
  
 }
-li {
-  cursor: pointer;
-  list-style: none;
-  text-align: left; 
 
-}
 
 .cards {
   display: flex;

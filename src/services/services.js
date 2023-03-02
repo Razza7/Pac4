@@ -19,9 +19,14 @@ export const pokeApi={
 return res
 },
 
-getPokemon(id) {
-return myAPI.get('/pokemon' + id);
-}
+  async getPokemon(id){
+  let res = [] 
+  const { data } = await myAPI.get('/pokemon' + id);
+  res.push(data)
+
+return res
+},
+
 }
 
 

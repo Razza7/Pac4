@@ -9,7 +9,7 @@ import PokemonCard from '../components/PokemonCard.vue';
 <template>
   <div class="new">
     <h1>Detalles de pokemon:</h1>
-    <p>ID: {{ detalle }}</p>
+    <p>ID: </p>
     
    
   </div>
@@ -21,7 +21,7 @@ import PokemonCard from '../components/PokemonCard.vue';
 export default {
   data() {
     return{
-      detalle:"Soy un detalle"
+      props: ['pokemonInfo']
     }
 
   },
